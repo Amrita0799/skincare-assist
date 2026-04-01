@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get a personalized skincare routine powered by AI. Take our quick quiz and receive expert product recommendations tailored to your skin.">
+  <title>GlowGuide — AI Skincare Recommendations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Floating Blobs Background -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">✿</span>
+        <span class="logo-text">GlowGuide</span>
+      </div>
+    </header>
+
+    <!-- Quiz Container -->
+    <main class="quiz-container" id="quizContainer">
+
+      <!-- Step 0: Welcome -->
+      <section class="step active" data-step="0" id="step-0">
+        <div class="welcome-card">
+          <div class="welcome-emoji">🌸</div>
+          <h1>Your Personalized Skincare Journey Starts Here</h1>
+          <p class="welcome-subtitle">Answer a few quick questions and our AI dermatologist will craft a skincare routine uniquely designed for your skin.</p>
+          <div class="welcome-features">
+            <div class="feature">
+              <span class="feature-icon">🧬</span>
+              <span>Skin Analysis</span>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">💊</span>
+              <span>Product Picks</span>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">🛒</span>
+              <span>Amazon Links</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-start" id="btnStart" onclick="nextStep()">
+            <span>Find My Routine</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <p class="welcome-note">Takes less than 2 minutes • 100% free</p>
+        </div>
+      </section>
+
+      <!-- Step 1: Age -->
+      <section class="step" data-step="1" id="step-1">
+        <div class="step-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 14%"></div></div>
+          <p class="step-label">Step 1 of 7</p>
+          <h2>How old are you?</h2>
+          <p class="step-desc">Your age helps us recommend age-appropriate ingredients and products.</p>
+          <div class="options-grid" id="ageOptions">
+            <button class="option-btn" data-value="Under 18" onclick="selectOption(this, 'age')">
+              <span class="option-emoji">🧒</span>
+              <span class="option-text">Under 18</span>
+            </button>
+            <button class="option-btn" data-value="18-24" onclick="selectOption(this, 'age')">
+              <span class="option-emoji">🧑</span>
+              <span class="option-text">18 – 24</span>
+            </button>
+            <button class="option-btn" data-value="25-34" onclick="selectOption(this, 'age')">
+              <span class="option-emoji">👩</span>
+              <span class="option-text">25 – 34</span>
+            </button>
+            <button class="option-btn" data-value="35-44" onclick="selectOption(this, 'age')">
+              <span class="option-emoji">👩‍💼</span>
+              <span class="option-text">35 – 44</span>
+            </button>
+            <button class="option-btn" data-value="45-54" onclick="selectOption(this, 'age')">
+              <span class="option-emoji">🧑‍🦰</span>
+              <span class="option-text">45 – 54</span>
+            </button>
+            <button class="option-btn" data-value="55+" onclick="selectOption(this, 'age')">
+              <span class="option-emoji">👵</span>
+              <span class="option-text">55+</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn btn-primary btn-next" id="btnNext1" onclick="nextStep()" disabled>Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: Gender -->
+      <section class="step" data-step="2" id="step-2">
+        <div class="step-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 28%"></div></div>
+          <p class="step-label">Step 2 of 7</p>
+          <h2>What's your gender?</h2>
+          <p class="step-desc">Different skin types are influenced by hormonal differences.</p>
+          <div class="options-grid options-2col" id="genderOptions">
+            <button class="option-btn" data-value="Female" onclick="selectOption(this, 'gender')">
+              <span class="option-emoji">👩</span>
+              <span class="option-text">Female</span>
+            </button>
+            <button class="option-btn" data-value="Male" onclick="selectOption(this, 'gender')">
+              <span class="option-emoji">👨</span>
+              <span class="option-text">Male</span>
+            </button>
+            <button class="option-btn" data-value="Non-binary" onclick="selectOption(this, 'gender')">
+              <span class="option-emoji">🧑</span>
+              <span class="option-text">Non-binary</span>
+            </button>
+            <button class="option-btn" data-value="Prefer not to say" onclick="selectOption(this, 'gender')">
+              <span class="option-emoji">🤐</span>
+              <span class="option-text">Prefer not to say</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn btn-primary btn-next" id="btnNext2" onclick="nextStep()" disabled>Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: Skin Type -->
+      <section class="step" data-step="3" id="step-3">
+        <div class="step-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 42%"></div></div>
+          <p class="step-label">Step 3 of 7</p>
+          <h2>What's your skin type?</h2>
+          <p class="step-desc">Understanding your skin type is the foundation of any good routine.</p>
+          <div class="options-grid options-skin" id="skinTypeOptions">
+            <button class="option-btn option-with-desc" data-value="Normal" onclick="selectOption(this, 'skinType')">
+              <span class="option-emoji">✨</span>
+              <span class="option-text">Normal</span>
+              <span class="option-desc">Balanced, not too oily or dry</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="Dry" onclick="selectOption(this, 'skinType')">
+              <span class="option-emoji">🏜️</span>
+              <span class="option-text">Dry</span>
+              <span class="option-desc">Feels tight, flaky, or rough</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="Oily" onclick="selectOption(this, 'skinType')">
+              <span class="option-emoji">💧</span>
+              <span class="option-text">Oily</span>
+              <span class="option-desc">Shiny, enlarged pores, acne-prone</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="Combination" onclick="selectOption(this, 'skinType')">
+              <span class="option-emoji">🔀</span>
+              <span class="option-text">Combination</span>
+              <span class="option-desc">Oily T-zone, dry cheeks</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="Sensitive" onclick="selectOption(this, 'skinType')">
+              <span class="option-emoji">🌡️</span>
+              <span class="option-text">Sensitive</span>
+              <span class="option-desc">Easily irritated, redness-prone</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn btn-primary btn-next" id="btnNext3" onclick="nextStep()" disabled>Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 4: Skin Concerns -->
+      <section class="step" data-step="4" id="step-4">
+        <div class="step-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 57%"></div></div>
+          <p class="step-label">Step 4 of 7</p>
+          <h2>What are your skin concerns?</h2>
+          <p class="step-desc">Select all that apply — we'll address each one in your routine.</p>
+          <div class="options-grid options-multi" id="concernOptions">
+            <button class="option-btn option-multi" data-value="Acne & Breakouts" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">😤</span>
+              <span class="option-text">Acne & Breakouts</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Dark Spots & Pigmentation" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">🔵</span>
+              <span class="option-text">Dark Spots</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Fine Lines & Wrinkles" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">〰️</span>
+              <span class="option-text">Wrinkles</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Dullness" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">😶</span>
+              <span class="option-text">Dullness</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Redness & Rosacea" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">🔴</span>
+              <span class="option-text">Redness</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Large Pores" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">🕳️</span>
+              <span class="option-text">Large Pores</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Uneven Skin Texture" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">🧱</span>
+              <span class="option-text">Uneven Texture</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Dark Circles" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">👁️</span>
+              <span class="option-text">Dark Circles</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Dryness & Flaking" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">❄️</span>
+              <span class="option-text">Dryness</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Sun Damage & Tan" onclick="toggleMulti(this, 'concerns')">
+              <span class="option-emoji">☀️</span>
+              <span class="option-text">Sun Damage</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn btn-primary btn-next" id="btnNext4" onclick="nextStep()" disabled>Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 5: Allergies -->
+      <section class="step" data-step="5" id="step-5">
+        <div class="step-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 71%"></div></div>
+          <p class="step-label">Step 5 of 7</p>
+          <h2>Any allergies or sensitivities?</h2>
+          <p class="step-desc">We'll avoid these ingredients in all recommendations.</p>
+          <div class="options-grid options-multi" id="allergyOptions">
+            <button class="option-btn option-multi" data-value="Fragrance" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">🌺</span>
+              <span class="option-text">Fragrance</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Parabens" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">🧪</span>
+              <span class="option-text">Parabens</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Sulfates" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">🫧</span>
+              <span class="option-text">Sulfates</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Retinol" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">💊</span>
+              <span class="option-text">Retinol</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Salicylic Acid" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">⚗️</span>
+              <span class="option-text">Salicylic Acid</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Niacinamide" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">💧</span>
+              <span class="option-text">Niacinamide</span>
+            </button>
+            <button class="option-btn option-multi" data-value="Essential Oils" onclick="toggleMulti(this, 'allergies')">
+              <span class="option-emoji">🫒</span>
+              <span class="option-text">Essential Oils</span>
+            </button>
+            <button class="option-btn option-multi option-none" data-value="None" onclick="toggleNone(this, 'allergies')">
+              <span class="option-emoji">✅</span>
+              <span class="option-text">None</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn btn-primary btn-next" id="btnNext5" onclick="nextStep()" disabled>Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 6: Budget -->
+      <section class="step" data-step="6" id="step-6">
+        <div class="step-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+          <p class="step-label">Step 6 of 7</p>
+          <h2>What's your budget?</h2>
+          <p class="step-desc">We'll match products to your comfort level.</p>
+          <div class="options-grid options-2col" id="budgetOptions">
+            <button class="option-btn option-with-desc" data-value="Budget-friendly (Under ₹500 per product)" onclick="selectOption(this, 'budget')">
+              <span class="option-emoji">💰</span>
+              <span class="option-text">Budget</span>
+              <span class="option-desc">Under ₹500/product</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="Mid-range (₹500-₹1500 per product)" onclick="selectOption(this, 'budget')">
+              <span class="option-emoji">💎</span>
+              <span class="option-text">Mid-Range</span>
+              <span class="option-desc">₹500 – ₹1,500/product</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="Premium (₹1500+ per product)" onclick="selectOption(this, 'budget')">
+              <span class="option-emoji">👑</span>
+              <span class="option-text">Premium</span>
+              <span class="option-desc">₹1,500+/product</span>
+            </button>
+            <button class="option-btn option-with-desc" data-value="No preference" onclick="selectOption(this, 'budget')">
+              <span class="option-emoji">🤷</span>
+              <span class="option-text">No Preference</span>
+              <span class="option-desc">Just find the best products</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn btn-primary btn-next" id="btnNext6" onclick="nextStep()" disabled>Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 7: Confirmation -->
+      <section class="step" data-step="7" id="step-7">
+        <div class="step-card confirm-card">
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+          <p class="step-label">Step 7 of 7</p>
+          <h2>Ready to get your routine! ✨</h2>
+          <p class="step-desc">Here's a summary of your profile:</p>
+          <div class="summary-grid" id="profileSummary"></div>
+          <button class="btn btn-primary btn-generate" id="btnGenerate" onclick="generateRoutine()">
+            <span class="btn-text">Generate My Routine</span>
+            <span class="btn-loader" style="display:none;">
+              <span class="spinner"></span>
+              <span>AI is crafting your routine...</span>
+            </span>
+          </button>
+          <div class="step-nav">
+            <button class="btn btn-ghost" onclick="prevStep()">← Back</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Results Section -->
+    <section class="results-container" id="resultsContainer" style="display:none;">
+      <div class="results-header">
+        <h1>Your Personalized Routine 🌿</h1>
+        <p class="results-summary" id="resultsSummary"></p>
+      </div>
+
+      <div class="routines-wrapper">
+        <!-- Morning Routine -->
+        <div class="routine-card" id="morningRoutine">
+          <div class="routine-header morning">
+            <span class="routine-icon">☀️</span>
+            <h2>Morning Routine</h2>
+          </div>
+          <div class="routine-steps" id="morningSteps"></div>
+        </div>
+
+        <!-- Evening Routine -->
+        <div class="routine-card" id="eveningRoutine">
+          <div class="routine-header evening">
+            <span class="routine-icon">🌙</span>
+            <h2>Evening Routine</h2>
+          </div>
+          <div class="routine-steps" id="eveningSteps"></div>
+        </div>
+      </div>
+
+      <!-- Weekly Treatments -->
+      <div class="routine-card weekly-card" id="weeklyCard">
+        <div class="routine-header weekly">
+          <span class="routine-icon">📅</span>
+          <h2>Weekly Treatments</h2>
+        </div>
+        <div class="routine-steps" id="weeklySteps"></div>
+      </div>
+
+      <!-- Tips -->
+      <div class="tips-card" id="tipsCard">
+        <div class="routine-header tips">
+          <span class="routine-icon">💡</span>
+          <h2>Personalized Tips</h2>
+        </div>
+        <ul class="tips-list" id="tipsList"></ul>
+      </div>
+
+      <!-- Retake -->
+      <div class="retake-section">
+        <button class="btn btn-primary" onclick="retakeQuiz()">
+          <span>↻ Retake Quiz</span>
+        </button>
+      </div>
+    </section>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
